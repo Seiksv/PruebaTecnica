@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
     private var commerceList =
         mutableListOf<Comercio>() // Declarar una lista mutable para almacenar los comercios
     private lateinit var adapter: ComercioAdapter
-    private lateinit var drawerLayout: DrawerLayout
-    private lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
