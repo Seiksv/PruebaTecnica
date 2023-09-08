@@ -18,10 +18,10 @@ import com.example.pruebatecnica.databinding.ActivityMainBinding
 import com.example.pruebatecnica.models.Comercio
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity(),  NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var listaDeComercios =
+    private var commerceList =
         mutableListOf<Comercio>() // Declarar una lista mutable para almacenar los comercios
     private lateinit var adapter: ComercioAdapter
     private lateinit var drawerLayout: DrawerLayout
@@ -33,18 +33,7 @@ class MainActivity : AppCompatActivity(),  NavigationView.OnNavigationItemSelect
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Configurar el menú lateral
-        drawerLayout = findViewById(R.id.drawer_layout)
-        val navigationView: NavigationView = findViewById(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener(this)
-
-        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.menu, R.string.close_drawer)
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        listaDeComercios = mutableListOf(
+        commerceList = mutableListOf(
             Comercio(
                 "Supermercado A",
                 "Alimentos",
@@ -69,7 +58,7 @@ class MainActivity : AppCompatActivity(),  NavigationView.OnNavigationItemSelect
 
         val recyclerView: RecyclerView = binding.companiesRV
         binding.companiesRV.layoutManager = LinearLayoutManager(this)
-        adapter = ComercioAdapter(listaDeComercios)
+        adapter = ComercioAdapter(commerceList)
         recyclerView.adapter = adapter
 
         binding.addCompaniesBTN.setOnClickListener {
@@ -99,7 +88,7 @@ class MainActivity : AppCompatActivity(),  NavigationView.OnNavigationItemSelect
             if (name.isNotEmpty() && depto.isNotEmpty() && document.isNotEmpty()) {
                 val nuevoComercio =
                     Comercio(name, depto, document, R.drawable.ic_launcher_background)
-                listaDeComercios.add(nuevoComercio)
+                commerceList.add(nuevoComercio)
                 adapter.notifyDataSetChanged()
             }
 
@@ -112,23 +101,4 @@ class MainActivity : AppCompatActivity(),  NavigationView.OnNavigationItemSelect
         val alertDialog = builder.create()
         alertDialog.show()
     }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)) {
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_agregar_comercio -> {
-                showdialogAddCompany()
-            }
-            // Agrega más opciones de menú aquí si es necesario
-        }
-
-        drawerLayout.closeDrawer(GravityCompat.START)
-        return true
-    }
-
 }
