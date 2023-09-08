@@ -1,0 +1,38 @@
+<!-- dialog_agregar_comercio.xml -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+
+    <EditText
+        android:id="@+id/nameET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del Comercio"
+        android:layout_margin="16dp"
+        android:padding="8dp"
+         />
+
+    <EditText
+        android:id="@+id/departamentET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Departamento"
+        android:layout_margin="16dp"
+        android:padding="8dp" />
+
+    <EditText
+        android:id="@+id/documentET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Documento"
+        android:layout_margin="16dp"
+        android:padding="8dp" />
+
+
+
+</LinearLayout>
